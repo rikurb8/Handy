@@ -15,7 +15,8 @@
     "postProcessing": "Xử lý sau",
     "history": "Lịch sử",
     "debug": "Gỡ lỗi",
-    "about": "Giới thiệu"
+    "about": "Giới thiệu",
+    "projects": "Projects"
   },
   "onboarding": {
     "subtitle": "Để bắt đầu, hãy chọn một mô hình chuyển đổi giọng nói",
@@ -528,6 +529,26 @@
           "details": "Handy sử dụng Whisper.cpp để xử lý chuyển đổi giọng nói thành văn bản nhanh, cục bộ. Cảm ơn công việc tuyệt vời của Georgi Gerganov và các cộng tác viên."
         }
       }
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Create projects and keep rich notes.",
+      "newProjectPlaceholder": "New project name",
+      "create": "Create",
+      "empty": "No projects yet. Create one to get started.",
+      "loading": "Loading projects...",
+      "selectProject": "Select a project to start writing.",
+      "projectName": "Project name",
+      "rename": "Rename",
+      "delete": "Delete",
+      "deleteError": "Failed to delete project.",
+      "renameError": "Failed to rename project.",
+      "insertLatestTranscript": "Insert Latest Transcript",
+      "saving": "Saving...",
+      "saved": "Saved",
+      "saveError": "Save failed",
+      "appendSuccess": "Latest transcript inserted.",
+      "appendError": "Could not insert latest transcript."
     }
   },
   "footer": {

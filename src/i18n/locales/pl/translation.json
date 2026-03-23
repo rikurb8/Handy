@@ -15,7 +15,8 @@
     "postProcessing": "Postproces",
     "history": "Historia",
     "debug": "Debugowanie",
-    "about": "O programie"
+    "about": "O programie",
+    "projects": "Projects"
   },
   "onboarding": {
     "subtitle": "Aby rozpocząć, wybierz model transkrypcji",
@@ -528,6 +529,26 @@
           "details": "Handy używa Whisper.cpp do szybkiego, lokalnego przetwarzania mowy na tekst. Dzięki niesamowitej pracy Georgi Gerganova i współtwórców."
         }
       }
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Create projects and keep rich notes.",
+      "newProjectPlaceholder": "New project name",
+      "create": "Create",
+      "empty": "No projects yet. Create one to get started.",
+      "loading": "Loading projects...",
+      "selectProject": "Select a project to start writing.",
+      "projectName": "Project name",
+      "rename": "Rename",
+      "delete": "Delete",
+      "deleteError": "Failed to delete project.",
+      "renameError": "Failed to rename project.",
+      "insertLatestTranscript": "Insert Latest Transcript",
+      "saving": "Saving...",
+      "saved": "Saved",
+      "saveError": "Save failed",
+      "appendSuccess": "Latest transcript inserted.",
+      "appendError": "Could not insert latest transcript."
     }
   },
   "footer": {

@@ -15,7 +15,8 @@
     "postProcessing": "后处理",
     "history": "历史记录",
     "debug": "调试",
-    "about": "关于"
+    "about": "关于",
+    "projects": "Projects"
   },
   "onboarding": {
     "subtitle": "请选择一个转录模型以开始使用",
@@ -528,6 +529,26 @@
           "details": "Handy 使用 Whisper.cpp 进行快速的本地语音转文字处理。感谢 Georgi Gerganov 和贡献者们的出色工作。"
         }
       }
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Create projects and keep rich notes.",
+      "newProjectPlaceholder": "New project name",
+      "create": "Create",
+      "empty": "No projects yet. Create one to get started.",
+      "loading": "Loading projects...",
+      "selectProject": "Select a project to start writing.",
+      "projectName": "Project name",
+      "rename": "Rename",
+      "delete": "Delete",
+      "deleteError": "Failed to delete project.",
+      "renameError": "Failed to rename project.",
+      "insertLatestTranscript": "Insert Latest Transcript",
+      "saving": "Saving...",
+      "saved": "Saved",
+      "saveError": "Save failed",
+      "appendSuccess": "Latest transcript inserted.",
+      "appendError": "Could not insert latest transcript."
     }
   },
   "footer": {

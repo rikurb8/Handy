@@ -8,6 +8,8 @@ document.documentElement.dataset.platform = platform();
 
 // Initialize i18n
 import "./i18n";
+import "@blocknote/core/fonts/inter.css";
+import "@blocknote/ariakit/style.css";
 
 // Initialize model store (loads models and sets up event listeners)
 import { useModelStore } from "./stores/modelStore";
