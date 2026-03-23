@@ -7,6 +7,13 @@ test.describe("Projects section", () => {
 
     await expect(page.locator("#root")).toHaveCount(1);
   });
+
+  test("Projects-related bootstrap keeps app mounted", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.locator("#root")).toHaveCount(1);
+    await page.waitForTimeout(1500);
+    await expect(page.locator("#root")).toHaveCount(1);
+  });
 });
 
 test.describe("Insert latest transcript", () => {
@@ -14,5 +21,7 @@ test.describe("Insert latest transcript", () => {
     await page.goto("/");
 
     await expect(page.locator("html")).toHaveCount(1);
+    await page.waitForTimeout(1500);
+    await expect(page.locator("#root")).toHaveCount(1);
   });
 });

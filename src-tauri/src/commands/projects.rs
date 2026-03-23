@@ -5,6 +5,18 @@ use crate::managers::{
 use std::sync::Arc;
 use tauri::{AppHandle, State};
 
+fn require_non_empty_transcript_text<'a>(latest_text: Option<&'a str>) -> Result<&'a str, String> {
+    let text = latest_text
+        .ok_or_else(|| "No completed transcript found".to_string())?
+        .trim();
+
+    if text.is_empty() {
+        return Err("Latest transcript is empty".to_string());
+    }
+
+    Ok(text)
+}
+
 #[tauri::command]
 #[specta::specta]
 pub async fn list_projects(
@@ -87,15 +99,38 @@ pub async fn append_latest_transcript_to_project(
 ) -> Result<ProjectNote, String> {
     let latest = history_manager
         .get_latest_completed_entry()
-        .map_err(|e| e.to_string())?
-        .ok_or_else(|| "No completed transcript found".to_string())?;
+        .map_err(|e| e.to_string())?;
 
-    let text = latest.transcription_text.trim();
-    if text.is_empty() {
-        return Err("Latest transcript is empty".to_string());
-    }
+    let text = require_non_empty_transcript_text(
+        latest
+            .as_ref()
+            .map(|entry| entry.transcription_text.as_str()),
+    )?;
 
     projects_manager
         .append_text_to_default_note(project_id, text)
         .map_err(|e| e.to_string())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::require_non_empty_transcript_text;
+
+    #[test]
+    fn require_non_empty_transcript_text_rejects_missing_transcript() {
+        let result = require_non_empty_transcript_text(None);
+        assert_eq!(result.unwrap_err(), "No completed transcript found");
+    }
+
+    #[test]
+    fn require_non_empty_transcript_text_rejects_whitespace_only_transcript() {
+        let result = require_non_empty_transcript_text(Some("   \n\t "));
+        assert_eq!(result.unwrap_err(), "Latest transcript is empty");
+    }
+
+    #[test]
+    fn require_non_empty_transcript_text_trims_and_returns_text() {
+        let result = require_non_empty_transcript_text(Some("  hello world  "));
+        assert_eq!(result.unwrap(), "hello world");
+    }
 }
