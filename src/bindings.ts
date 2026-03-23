@@ -777,6 +777,62 @@ async updateRecordingRetentionPeriod(period: string) : Promise<Result<null, stri
     else return { status: "error", error: e  as any };
 }
 },
+async listProjects() : Promise<Result<Project[], string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("list_projects") };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+async createProject(name: string) : Promise<Result<Project, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("create_project", { name }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+async renameProject(projectId: number, name: string) : Promise<Result<Project, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("rename_project", { projectId, name }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+async deleteProject(projectId: number) : Promise<Result<null, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("delete_project", { projectId }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+async getProjectDefaultNote(projectId: number) : Promise<Result<ProjectNote, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("get_project_default_note", { projectId }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+async updateProjectDefaultNoteContent(projectId: number, contentJson: string) : Promise<Result<ProjectNote, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("update_project_default_note_content", { projectId, contentJson }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
+async appendLatestTranscriptToProject(projectId: number) : Promise<Result<ProjectNote, string>> {
+    try {
+    return { status: "ok", data: await TAURI_INVOKE("append_latest_transcript_to_project", { projectId }) };
+} catch (e) {
+    if(e instanceof Error) throw e;
+    else return { status: "error", error: e  as any };
+}
+},
 /**
  * Checks if the Mac is a laptop by detecting battery presence
  * 
@@ -838,6 +894,8 @@ export type PaginatedHistory = { entries: HistoryEntry[]; has_more: boolean }
 export type PasteMethod = "ctrl_v" | "direct" | "none" | "shift_insert" | "ctrl_shift_v" | "external_script"
 export type PermissionAccess = "allowed" | "denied" | "unknown"
 export type PostProcessProvider = { id: string; label: string; base_url: string; allow_base_url_edit?: boolean; models_endpoint?: string | null; supports_structured_output?: boolean }
+export type Project = { id: number; name: string; created_at: number; updated_at: number; archived_at: number | null }
+export type ProjectNote = { id: number; project_id: number; title: string; content_json: string; is_default: boolean; created_at: number; updated_at: number }
 export type RecordingRetentionPeriod = "never" | "preserve_limit" | "days_3" | "weeks_2" | "months_3"
 export type ShortcutBinding = { id: string; name: string; description: string; default_binding: string; current_binding: string }
 export type SoundTheme = "marimba" | "pop" | "custom"

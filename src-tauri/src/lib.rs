@@ -29,6 +29,7 @@ use env_filter::Builder as EnvFilterBuilder;
 use managers::audio::AudioRecordingManager;
 use managers::history::HistoryManager;
 use managers::model::ModelManager;
+use managers::projects::ProjectsManager;
 use managers::transcription::TranscriptionManager;
 #[cfg(unix)]
 use signal_hook::consts::{SIGUSR1, SIGUSR2};
@@ -155,6 +156,8 @@ fn initialize_core_logic(app_handle: &AppHandle) {
     );
     let history_manager =
         Arc::new(HistoryManager::new(app_handle).expect("Failed to initialize history manager"));
+    let projects_manager =
+        Arc::new(ProjectsManager::new(app_handle).expect("Failed to initialize projects manager"));
 
     // Apply accelerator preferences before any model loads
     managers::transcription::apply_accelerator_settings(app_handle);
@@ -164,6 +167,7 @@ fn initialize_core_logic(app_handle: &AppHandle) {
     app_handle.manage(model_manager.clone());
     app_handle.manage(transcription_manager.clone());
     app_handle.manage(history_manager.clone());
+    app_handle.manage(projects_manager.clone());
 
     // Note: Shortcuts are NOT initialized here.
     // The frontend is responsible for calling the `initialize_shortcuts` command
@@ -421,6 +425,13 @@ pub fn run(cli_args: CliArgs) {
             commands::history::retry_history_entry_transcription,
             commands::history::update_history_limit,
             commands::history::update_recording_retention_period,
+            commands::projects::list_projects,
+            commands::projects::create_project,
+            commands::projects::rename_project,
+            commands::projects::delete_project,
+            commands::projects::get_project_default_note,
+            commands::projects::update_project_default_note_content,
+            commands::projects::append_latest_transcript_to_project,
             helpers::clamshell::is_laptop,
         ])
         .events(collect_events![managers::history::HistoryUpdatePayload,]);

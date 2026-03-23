@@ -15,7 +15,8 @@
     "postProcessing": "後処理",
     "history": "履歴",
     "debug": "デバッグ",
-    "about": "概要"
+    "about": "概要",
+    "projects": "Projects"
   },
   "onboarding": {
     "subtitle": "開始するには、文字起こしモデルを選択してください",
@@ -528,6 +529,26 @@
           "details": "Handyは高速でローカルな音声からテキストへの変換にWhisper.cppを使用しています。Georgi Gerganov氏と貢献者の皆様の素晴らしい仕事に感謝します。"
         }
       }
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Create projects and keep rich notes.",
+      "newProjectPlaceholder": "New project name",
+      "create": "Create",
+      "empty": "No projects yet. Create one to get started.",
+      "loading": "Loading projects...",
+      "selectProject": "Select a project to start writing.",
+      "projectName": "Project name",
+      "rename": "Rename",
+      "delete": "Delete",
+      "deleteError": "Failed to delete project.",
+      "renameError": "Failed to rename project.",
+      "insertLatestTranscript": "Insert Latest Transcript",
+      "saving": "Saving...",
+      "saved": "Saved",
+      "saveError": "Save failed",
+      "appendSuccess": "Latest transcript inserted.",
+      "appendError": "Could not insert latest transcript."
     }
   },
   "footer": {

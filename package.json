@@ -20,6 +20,9 @@
     "postinstall": "bun scripts/check-nix-deps.ts"
   },
   "dependencies": {
+    "@blocknote/ariakit": "^0.47.2",
+    "@blocknote/core": "^0.47.2",
+    "@blocknote/react": "^0.47.2",
     "@tailwindcss/vite": "^4.1.16",
     "@tauri-apps/api": "^2.10.0",
     "@tauri-apps/plugin-autostart": "~2.5.1",
